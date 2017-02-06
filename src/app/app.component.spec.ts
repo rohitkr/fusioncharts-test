@@ -2,12 +2,15 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { FusionChartsComponent } from 'angular2-fusioncharts';
+
+declare var FusionCharts;
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        FusionChartsComponent, AppComponent
       ],
     });
     TestBed.compileComponents();
@@ -30,5 +33,12 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('app works!');
+  }));
+
+  it('should render Column2D FusionCharts in a div tag', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(FusionCharts.items['chartobject-1'].hasRendered()).toBeTruthy();
   }));
 });
